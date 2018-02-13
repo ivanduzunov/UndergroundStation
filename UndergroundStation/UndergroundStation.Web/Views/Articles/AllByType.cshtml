@@ -1,0 +1,16 @@
+﻿@model NewsListingViewModelByType
+@{
+    ViewData["Title"] = Model.articleTypeDescription;
+}
+<br />
+<br />
+<div class="jumbotron">
+    <h4 class="row"><em>@ViewData["Title"]</em></h4>
+
+    @await Html.PartialAsync("_NewsListing", Model.News)
+
+    @if (Model.TotalArticles > Model.News.Count())
+    {
+        @await Html.PartialAsync("_ArticlesPegination", Model)
+    }
+</div>

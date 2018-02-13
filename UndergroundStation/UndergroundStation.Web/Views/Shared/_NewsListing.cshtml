@@ -1,0 +1,18 @@
+﻿@model IEnumerable<NewsListingServiceModel>
+
+<div class="row">
+    <div class="col-md-6; align-middle">
+        <ul class="list-group article-list">
+            @foreach (var article in Model)
+            {
+                <li class="list-group-item">
+                    <span class="badge badge-primary badge-pill" style="background-color:orangered; align-self:flex-start">@article.ArticleType.ToString()</span>
+                    <br />
+                    <a asp-action="Details" asp-route-id="@article.Id">@article.Title</a>
+                    <br />
+                    <small>published on @article.PublishedDate.ToShortDateString() at @article.PublishedDate.ToShortTimeString()</small>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

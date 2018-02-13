@@ -1,0 +1,43 @@
+﻿@model NewsListingViewModel
+
+@{
+    ViewData["Title"] = "All News";
+}
+<br />
+<br />
+
+<h2>News</h2>
+@if (User.IsInRole(WebConstants.AuthorRole))
+{
+    <br />
+    <a class="btn btn-primary btn-sm" asp-area="Author" asp-controller="Articles" asp-action="Create">Add Article</a>
+    <br />
+}
+<div class="jumbotron">
+    <h3 class="col-md-offset-1">Categories</h3>
+    <ul >
+        @foreach (var category in Model.ArticleTypes)
+        {
+            var dict =
+                 new Dictionary<string, string>
+                 {
+                      {"articleType", category.ToString()},
+                      {"articleTypeDescription", WebExtentions.Description(category)},
+                      {"page", "1"},
+                 };
+            <li >
+                <a asp-area="" asp-controller="Articles" asp-action="AllByType" asp-all-route-data="@dict">
+                <h3>@(WebExtentions.Description(category))</h3></a>
+            </li>
+        }
+    </ul>
+    <br />
+
+    @await Html.PartialAsync("_NewsListing", Model.News)
+
+    @if (Model.TotalArticles > Model.News.Count())
+    {
+        @await Html.PartialAsync("_ArticlesPegination", Model)
+    }
+</div>
+

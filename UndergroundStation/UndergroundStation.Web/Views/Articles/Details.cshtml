@@ -1,0 +1,128 @@
+﻿@model NewsDetailsServiceModel
+@using UndergroundStation.Web
+@using  System.Linq
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+<div class="jumbotron jumbotron-fluid">
+    <p style="text-align:center">
+        <h3 style="text-align:center">
+            <em>@Model.Title</em>
+        </h3>
+    </p>
+   
+    <span class="badge badge-primary badge-pill">@Model.ArticleType</span>
+    <img src="@Model.ImageUrl" class="img-responsive" height="400" width="800">
+    <p style="text-align:justify">
+        @Model.Content
+    </p>
+
+    @if (Model.VideoUrl != null)
+    {
+        <iframe width="570" height="325"
+                src="@Model.VideoUrl"
+                frameborder="1"
+                gesture="media"
+                allow="encrypted-media"
+                allowfullscreen="true"></iframe>
+    }
+
+
+    <div class="row">
+        @{
+            int likes = Model.Likes.Where(l => l.IsLiked).Count();
+            int unlikes = Model.Likes.Where(l => l.IsLiked == false).Count();
+        }
+
+        @if (!Model.IsLiked && User.Identity.IsAuthenticated)
+            {
+            <div class="col-sm-offset-1">
+                <form asp-action="AddLike" asp-route-id="@Model.Id" method="post">
+                    <input type="submit" class="btn btn-success" style="width:80px" value="@($"Like {likes} ")" />
+                </form>
+                <form asp-action="AddUnlike" asp-route-id="@Model.Id" method="post">
+                    <input type="submit" class="btn btn-danger" style="width:80px" value="@($"Unlike {unlikes}")" />
+                </form>
+            </div>
+            
+        }
+        else
+        {
+            <div class="col-sm-offset-1">
+                <h6  class="btn btn-success" style="width:80px">Likes @likes</h6>
+                <br />
+                <h4  class="btn btn-danger" style="width:80px">Unlikes @unlikes</h4>
+            </div>
+           
+        }
+        <br />
+        <br />
+        <h3>Comments</h3>
+
+        @foreach (var comment in Model.Comments.OrderBy(c => c.PublishedDate).ThenBy(c => c.PublishedDate.TimeOfDay))
+            {
+            <div class="jumbotron-fluid; col-md-7" style="background-color:gray">
+                <div class="jumbotron-fluid" style="background-color:lightgray">
+                    <h4 style="background-color:darkgray" font:bold"><a asp-area="" asp-controller="Account" asp-action="Profile" asp-route-username="@comment.AuthorUserName">@comment.AuthorUserName</a>@($" ({comment.PublishedDate.ToShortTimeString()} {comment.PublishedDate.ToShortDateString()})")</h4>
+                    <p><h6 style="font:italic">@comment.Content</h6></p>
+                    @if (User.IsInRole(WebConstants.AdministratorRole))
+                    {
+                        <form asp-area="Admin" asp-controller="Articles" asp-action="DeleteComment" asp-route-commentId="@comment.Id" asp-route-articleId="@Model.Id" model="post">
+                            <input type="submit" class="btn btn-danger btn-sm" value="Delete" )" />
+                        </form>                    
+                    }                
+                </div>
+                <div class="clearfix"></div>
+
+                @if (comment.Answers.Any())
+                {
+                    @foreach (var answer in comment.Answers.OrderByDescending(c => c.PublishedDate).ThenBy(c => c.PublishedDate.TimeOfDay))
+                    {
+                        <div class="jumbotron-fluid; col-md-offset-2" style="background-color:lightgray">
+                            <h4 style="background-color:darkgray" font:bold"><a asp-area="" asp-controller="Account" asp-action="Profile" asp-route-username="@answer.AuthorUserName">@answer.AuthorUserName</a>@($" ({answer.PublishedDate.ToShortTimeString()} {answer.PublishedDate.ToShortDateString()})")</h4>
+                            <p><h6 style="font:italic">@answer.Content</h6></p>
+                            @if (User.IsInRole(WebConstants.AdministratorRole))
+                            {
+                                <form asp-area="Admin" asp-controller="Articles" asp-action="DeleteComment" asp-route-commentId="@answer.Id" asp-route-articleId="@Model.Id" model="post">
+                                    <input type="submit" class="btn btn-danger btn-sm" value="Delete" )" />
+                                </form>
+                            }
+                        </div>
+                    }
+
+                }
+                @if (User.Identity.IsAuthenticated)
+                {
+                  
+                       <form asp-action="AddCommentByComment" asp-route-id="@comment.Id" method="post">
+                           <textarea  cols="30" rows="1" name="answer" id="answer" required></textarea>
+                           <input type="hidden" name="articleId" id="articleId" value="@Model.Id" class="form-control">
+                           <br />
+                           <input type="submit" class="btn btn-info btn-sm" value="Add answer" )" />
+                       </form>
+                   
+                   
+
+                }
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+
+        }
+
+        @if (User.Identity.IsAuthenticated)
+        {
+           
+            <br />
+            <div>
+                <form asp-action="AddCommentByArticle" asp-route-id="@Model.Id" method="post">
+                    <textarea cols="70" rows="3" name="comment" id="comment" required></textarea>
+                    <br />
+                    <input type="submit" class="btn btn-primary btn-sm" value="Add comment" )" />
+                </form>
+            </div>
+        }
+    </div>
+</div>

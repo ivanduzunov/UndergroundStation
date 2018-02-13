@@ -1,0 +1,13 @@
+C:\Users\Ivan\Documents\Visual Studio 2017\Projects\CSharpMVCFrameworksASP.NETCoreCourse\UndergroundStation\UndergroundStation.Services\bin\Debug\netstandard2.0\UndergroundStation.Services.deps.json
+C:\Users\Ivan\Documents\Visual Studio 2017\Projects\CSharpMVCFrameworksASP.NETCoreCourse\UndergroundStation\UndergroundStation.Services\bin\Debug\netstandard2.0\UndergroundStation.Services.dll
+C:\Users\Ivan\Documents\Visual Studio 2017\Projects\CSharpMVCFrameworksASP.NETCoreCourse\UndergroundStation\UndergroundStation.Services\bin\Debug\netstandard2.0\UndergroundStation.Services.pdb
+C:\Users\Ivan\Documents\Visual Studio 2017\Projects\CSharpMVCFrameworksASP.NETCoreCourse\UndergroundStation\UndergroundStation.Services\bin\Debug\netstandard2.0\UndergroundStation.Common.dll
+C:\Users\Ivan\Documents\Visual Studio 2017\Projects\CSharpMVCFrameworksASP.NETCoreCourse\UndergroundStation\UndergroundStation.Services\bin\Debug\netstandard2.0\UndergroundStation.Data.dll
+C:\Users\Ivan\Documents\Visual Studio 2017\Projects\CSharpMVCFrameworksASP.NETCoreCourse\UndergroundStation\UndergroundStation.Services\bin\Debug\netstandard2.0\UndergroundStation.Common.pdb
+C:\Users\Ivan\Documents\Visual Studio 2017\Projects\CSharpMVCFrameworksASP.NETCoreCourse\UndergroundStation\UndergroundStation.Services\bin\Debug\netstandard2.0\UndergroundStation.Data.pdb
+C:\Users\Ivan\Documents\Visual Studio 2017\Projects\CSharpMVCFrameworksASP.NETCoreCourse\UndergroundStation\UndergroundStation.Services\obj\Debug\netstandard2.0\UndergroundStation.Services.csprojResolveAssemblyReference.cache
+C:\Users\Ivan\Documents\Visual Studio 2017\Projects\CSharpMVCFrameworksASP.NETCoreCourse\UndergroundStation\UndergroundStation.Services\obj\Debug\netstandard2.0\UndergroundStation.Services.csproj.CoreCompileInputs.cache
+C:\Users\Ivan\Documents\Visual Studio 2017\Projects\CSharpMVCFrameworksASP.NETCoreCourse\UndergroundStation\UndergroundStation.Services\obj\Debug\netstandard2.0\UndergroundStation.Services.AssemblyInfoInputs.cache
+C:\Users\Ivan\Documents\Visual Studio 2017\Projects\CSharpMVCFrameworksASP.NETCoreCourse\UndergroundStation\UndergroundStation.Services\obj\Debug\netstandard2.0\UndergroundStation.Services.AssemblyInfo.cs
+C:\Users\Ivan\Documents\Visual Studio 2017\Projects\CSharpMVCFrameworksASP.NETCoreCourse\UndergroundStation\UndergroundStation.Services\obj\Debug\netstandard2.0\UndergroundStation.Services.dll
+C:\Users\Ivan\Documents\Visual Studio 2017\Projects\CSharpMVCFrameworksASP.NETCoreCourse\UndergroundStation\UndergroundStation.Services\obj\Debug\netstandard2.0\UndergroundStation.Services.pdb

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<SectionListingServiceModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="jumbotron vertical-center" style="">
+    <img style="max-width:900px; margin-top:40px; margin-left: 0;"
+         class="img-responsive; col-lg-offset-3" src="~/images/logo.png" )>
+    <h3 class="text-center"><em>The voice of the underground community!</em></h3>
+</div>
+@if (User.IsInRole(WebConstants.ForumModeratorRole))
+{
+    <a href="/Forum/Sections/Create" class="btn btn-success">Add Section</a>
+}
+
+<div class="jumbotron">
+    <h2 class="col-md-offset-1">Sections</h2>
+   <ul>
+       @foreach (var item in Model)
+            {
+   
+          <li>
+              <a asp-area="forum" asp-controller="Sections" asp-action="Details" asp-route-id="@item.Id"><h2>@item.Tittle</h2></a>
+              <h4>@item.Description</h4>
+              <h5>Themes: @(item.Themes.Where(t => t.IsDeleted == false).Count())</h5>
+          </li>            
+
+       }
+   </ul>
+</div>

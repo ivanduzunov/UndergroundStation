@@ -1,0 +1,85 @@
+﻿html, body {
+    height: 100%;
+}
+
+.container {
+    width: 1025px;
+}
+
+.vertical-center {
+    height: 100%;
+    width: 100%;
+    text-align: center; /* align the inline(-block) elements horizontally */
+    font: 0/0 a; /* remove the gap between inline(-block) elements */
+}
+
+    .vertical-center:before { /* create a full-height inline block pseudo=element */
+        content: ' ';
+        display: inline-block;
+        vertical-align: middle; /* vertical alignment of the inline element */
+        height: 100%;
+    }
+
+    .vertical-center > .container {
+        max-width: 100%;
+        background-color: gold;
+        display: inline-block;
+        vertical-align: middle; /* vertical alignment of the inline element */
+        font: 16px/1 "Helvetica Neue", Helvetica, Arial, sans-serif; /* <-- reset the font property */
+    }
+
+@media (max-width: 768px) {
+    .vertical-center:before {
+        /* height: auto; */
+        display: none;
+    }
+}
+body {
+    background-color: grey;
+}
+.navbar-inverse {
+    background-color: #00060A !important;
+    color: navajowhite;
+    border: 0;
+}
+
+
+.navbar-brand {
+    background: url(images/coollogo_com-17807119.png) no-repeat;
+    background-size: 280px 50px;
+    height: 40px;
+    margin: 1px;
+    width: 280px;
+}
+
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}

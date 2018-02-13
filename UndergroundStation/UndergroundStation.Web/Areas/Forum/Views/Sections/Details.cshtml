@@ -1,0 +1,48 @@
+﻿@model SectionsDetailsViewModel
+@using System.Linq
+@{
+    ViewData["Title"] = Model.SectionDetails.Tittle;
+}
+<br />
+<br />
+
+<div class="row" align="center">
+    <h1><a asp-area="Forum" asp-controller="Home" asp-action="Index">Forum</a> @($"/{Model.SectionDetails.Tittle}")</h1>
+</div>
+
+
+<div class="jumbotron">
+    <h3 class="col-md-offset-1">Themes</h3>
+    <ul>
+        @foreach (var theme in Model.Themes)
+        {
+            var dict =
+               new Dictionary<string, string>
+                   {
+                  {"themeId", theme.Id.ToString()},
+                  {"page", "1"},
+                   };
+
+            <li>
+                <h3>
+                    <a asp-area="Forum" asp-controller="Themes" asp-action="Details" asp-all-route-data="@dict">@theme.Title</a>
+                </h3>
+                <h5>By <a asp-area="" asp-controller="Account" asp-action="Profile" asp-route-username="@theme.CreatorName">@theme.CreatorName</a></h5>
+                <h5>Open at: @($"{theme.PublishedDate.ToShortTimeString()} on {theme.PublishedDate.ToShortDateString()}")</h5>
+                <h5>Answers: @(theme.ArticlesCount)</h5>
+                @if (User.IsInRole(WebConstants.ForumModeratorRole))
+                {
+                        <form asp-area="Forum" asp-controller="Themes" asp-action="DeleteTheme" asp-route-themeId="@theme.Id" asp-route-sectionId="@Model.SectionDetails.Id" model="post">
+                            <input type="submit" class="btn btn-danger btn-sm" value="Delete" )" />
+                        </form>
+                }
+                
+
+            </li>
+        }
+
+    </ul>
+    <p align="right">
+        <a class="btn btn-primary btn-sm" asp-area="Forum" asp-controller="Sections" asp-action="AddTheme" asp-route-id="@Model.SectionDetails.Id">Add Theme</a>
+    </p>
+</div>

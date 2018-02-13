@@ -1,0 +1,23 @@
+﻿@model AccountProfileServiceModel
+@{
+    ViewData["Title"] = $"Profile - {Model.Username}";
+}
+
+
+
+<div class="jumbotron">
+    <h2>@Model.Username</h2>
+    @if (Model.Role != null)
+    {
+        <span class="badge badge-primary badge-pill" style="background-color: lightskyblue">@Model.Role</span>
+    }
+    
+    <ul>
+        <li><h3>Email: @Model.Email</h3></li>
+        <li><h3>Comments: @Model.CommentsCount</h3></li>
+        <li><h3>Forum Themes: @Model.ForumThemesCount</h3></li>
+        <li><h3>Forum Posts: @Model.ForumArticlesCount</h3></li>
+    </ul>
+
+</div>
+
